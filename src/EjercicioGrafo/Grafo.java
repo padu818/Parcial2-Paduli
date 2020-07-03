@@ -16,6 +16,10 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 
+
+
+
+
 public class Grafo<T> {
 	private List<Arista<T>> aristas;
 	private List<Vertice<T>> vertices;
@@ -176,10 +180,50 @@ public class Grafo<T> {
     }
     
    
+    /*
+     * List<Vertice>camino(Vertice inicial, Integer saltos, Integer gradoSalida) q
+	Este método recibe un vertice inicial, la cantidad de saltos máxima 
+	y el grado de salida deseado y retorna una lista con todos los veritces que tienen 
+	el grado de salida deseado y que son alcanzables desde el vertice inicial.
+
+	Por ejemplo en el siguiente grafo
+	
+	
+	
+	camino(A,2,1) buscará todos los vertices de grado de salida 1, que están a lo sumo
+	 a 2 saltos y retorna C (dado que G el otro vertice de grado 1 está a lo sumo a 3 saltos)
+	camino(A,1,3) buscará todos los vertices de grado de salida 2, que están a lo sumo 
+	a 1 salto y retorna B (el resto está a más saltos.)
+     */
 
 
+  
+    
+    public List<Vertice<T>> camino(Vertice<T> inicial,Integer salto,Integer gradoSalida) {
+      	List<Vertice<T>> nuevo = new ArrayList<Vertice<T>>();
+      	return camino(inicial,nuevo,gradoSalida,salto);
+      }
+      
+      public List<Vertice<T>> camino(Vertice<T> inicial,List<Vertice<T>> nuevo,Integer gradoSalida, Integer salto) {
+     	List<Vertice<T>> adyacentes = getAdyacentes(inicial);
 
-
+     	for(Vertice<T> v : adyacentes) {
+     		Integer auxiliar = salto;
+     		if(gradoSalida(v) == gradoSalida && auxiliar == 1) {
+     			nuevo.add(v);
+     			return nuevo;
+     		} 
+     		else if(auxiliar > 1){
+     			auxiliar--;
+     			List<Vertice<T>> aux = camino(v, nuevo,gradoSalida,auxiliar);
+     			if(aux != null) {
+     				for(int i =nuevo.size(); i< aux.size();i++)
+     					nuevo.add(aux.get(i));
+     				}
+     		}
+     	}
+     	return nuevo;
+     }
    
       
       

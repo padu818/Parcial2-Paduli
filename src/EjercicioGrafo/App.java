@@ -5,31 +5,29 @@ package EjercicioGrafo;
 public class App {
 
 	public static void main(String[] args) {
-		Grafo<Integer> g1 = new Grafo<Integer>();
+		Grafo<Integer> grafoPrueba = new Grafo<Integer>();
 		
-//		g1.addNodo(4);
-//		g1.addNodo(8);
-//		g1.addNodo(12);
-//		g1.addNodo(15);
-//		g1.addNodo(16);
-//		g1.conectar(4, 8);
-//		g1.conectar(4, 12);
-//		g1.conectar(12, 16);
-//		g1.conectar(8, 12);
-//		g1.conectar(8, 15);
-//		g1.conectar(15, 16);
-//		g1.conectar(8, 16);
-//		g1.conectar(4, 16);
-//		g1.conectar(8, 12);
-//		/**     8 ---> 15
-//		 *    / |       | 
-//		 *  4   |		|
-//		 *    \ |		|
-//		 *      12 ---> 16
-//		 * 
-//		 * 
-//		 */
-		
+		grafoPrueba .addNodo(1);
+		grafoPrueba .addNodo(2);
+		grafoPrueba .addNodo(3);
+		grafoPrueba .addNodo(4);
+		grafoPrueba .addNodo(5);
+		grafoPrueba .addNodo(6);
+		grafoPrueba .addNodo(7);
+		grafoPrueba .conectar(1, 2);
+		grafoPrueba .conectar(1, 3);
+		grafoPrueba .conectar(2, 4);
+		grafoPrueba .conectar(2, 3);
+		grafoPrueba .conectar(3, 5);
+		grafoPrueba .conectar(4, 6);
+		grafoPrueba .conectar(4, 5);
+		grafoPrueba .conectar(5, 6);
+		grafoPrueba .conectar(5, 7);
+		grafoPrueba .conectar(7, 6);
+
+		System.out.println(grafoPrueba.camino(new Vertice<Integer>(1), 2, 1));
+		System.out.println(grafoPrueba.camino(new Vertice<Integer>(1), 1, 2));
+		System.out.println(grafoPrueba.camino(new Vertice<Integer>(1), 2, 2));
 
 	}
 }
